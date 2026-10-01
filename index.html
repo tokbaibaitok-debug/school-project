@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cybersecurity Awareness</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --background: #06111c;
+            --dark: #020912;
+            --card: #0d1c2b;
+            --green: #00ff9d;
+            --blue: #00aaff;
+            --white: #f5faff;
+            --gray: #b8c7d2;
+            --focus: #ffffff;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* =========================
+        ACCESSIBILITY
+        ========================= */
+
+        :focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 4px;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            border-radius: 6px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .button:hover,
+            .cards article:hover {
+                transform: none;
+            }
+        }
+
+        /* =========================
+        NAVIGATION
+        ========================= */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(2, 9, 18, 0.9);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.15);
+        }
+
+        nav {
+            max-width: 1150px;
+            height: 70px;
+            margin: auto;
+            padding: 0 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav h1 {
+            color: var(--green);
+            font-size: 25px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--green);
+        }
+
+        .hero {
+            min-height: 100vh;
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 130px 20px 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .subtitle {
+            color: var(--green);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: clamp(45px, 7vw, 75px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h2 span {
+            color: var(--green);
+        }
+
+        .hero-content > p:not(.subtitle) {
+            color: var(--gray);
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 14px 24px;
+
+            color: #00150d;
+            background: var(--green);
+
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 6px;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.35);
+        }
+
+        /* SHIELD */
+
+        .shield {
+            width: 280px;
+            height: 320px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 110px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(0, 255, 157, 0.15),
+                rgba(0, 170, 255, 0.08)
+            );
+
+            border: 1px solid rgba(0, 255, 157, 0.3);
+
+            clip-path: polygon(
+                50% 0,
+                90% 15%,
+                90% 60%,
+                75% 80%,
+                50% 100%,
+                25% 80%,
+                10% 60%,
+                10% 15%
+            );
+
+            box-shadow: 0 0 50px rgba(0, 255, 157, 0.15);
+        }
+
+        /* =========================
+        GENERAL SECTIONS
+        ========================= */
+
+        .section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 100px 20px;
+        }
+
+        .section > h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .section > p:not(.subtitle) {
+            color: var(--gray);
+            max-width: 750px;
+            margin-bottom: 45px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .cards article {
+            padding: 30px;
+
+            background: var(--card);
+
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+
+            transition: 0.3s;
+        }
+
+        .cards article:hover {
+            transform: translateY(-8px);
+            border-color: var(--green);
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .cards h3 {
+            margin-bottom: 10px;
+        }
+
+        .cards p {
+            color: var(--gray);
+        }
+
+        /* =========================
+        THREATS
+        ========================= */
+
+        .dark-section {
+            max-width: none;
+            padding-left: max(20px, calc((100% - 1110px) / 2));
+            padding-right: max(20px, calc((100% - 1110px) / 2));
+
+            background: var(--dark);
+        }
+
+        .threats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .threat {
+            display: flex;
+            gap: 20px;
+
+            padding: 25px;
+
+            background: var(--card);
+
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+        }
+
+        .threat > span {
+            color: var(--green);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .threat h3 {
+            margin-bottom: 7px;
+        }
+
+        .threat p {
+            color: var(--gray);
+        }
+
+        /* =========================
+        SAFETY TIPS
+        ========================= */
+
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tip {
+            padding: 25px;
+
+            background: var(--card);
+
+            border-left: 3px solid var(--green);
+        }
+
+        .tip strong {
+            color: var(--green);
+            font-size: 14px;
+        }
+
+        .tip h3 {
+            margin: 10px 0;
+        }
+
+        .tip p {
+            color: var(--gray);
+        }
+
+        /* =========================
+        FOOTER
+        ========================= */
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+
+            background: #01060b;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        footer h2 {
+            color: var(--green);
+            margin-bottom: 5px;
+        }
+
+        footer p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        footer small {
+            color: #9aabb8;
+        }
+
+        /* =========================
+        RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .shield {
+                width: 220px;
+                height: 250px;
+                font-size: 80px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .threats {
+                grid-template-columns: 1fr;
+            }
+
+            .tips {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero h2 {
+                font-size: 45px;
+            }
+
+            .section > h2 {
+                font-size: 34px;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h1>CyberSafe</h1>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#threats">Threats</a></li>
+                <li><a href="#tips">Safety Tips</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HOME -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="subtitle">CYBERSECURITY AWARENESS</p>
+
+                <h2>
+                    Protect Your
+                    <span>Digital World</span>
+                </h2>
+
+                <p>
+                    Cybersecurity is the practice of protecting computers,
+                    networks, applications, and personal information from
+                    digital threats.
+                </p>
+
+                <a href="#tips" class="button">
+                    Learn How to Stay Safe
+                </a>
+            </div>
+
+            <div class="shield">
+                🛡️
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <p class="subtitle">ABOUT CYBERSECURITY</p>
+
+            <h2>What is Cybersecurity?</h2>
+
+            <p>
+                Cybersecurity protects digital systems and information
+                from unauthorized access, attacks, damage, or theft.
+                It is important for individuals, schools, businesses,
+                and organizations.
+            </p>
+
+            <div class="cards">
+
+                <article>
+                    <div class="icon">🔐</div>
+                    <h3>Data Protection</h3>
+                    <p>
+                        Keep personal and sensitive information safe
+                        from unauthorized access.
+                    </p>
+                </article>
+
+                <article>
+                    <div class="icon">🖥️</div>
+                    <h3>Device Security</h3>
+                    <p>
+                        Protect computers, phones, and other devices
+                        from malicious software.
+                    </p>
+                </article>
+
+                <article>
+                    <div class="icon">🌐</div>
+                    <h3>Network Security</h3>
+                    <p>
+                        Secure networks against unauthorized access
+                        and suspicious activity.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- THREATS -->
+        <section id="threats" class="section dark-section">
+
+            <p class="subtitle">COMMON THREATS</p>
+
+            <h2>Know the Risks</h2>
+
+            <div class="threats">
+
+                <div class="threat">
+                    <span>01</span>
+                    <div>
+                        <h3>Phishing</h3>
+                        <p>
+                            Fake emails, messages, or websites designed
+                            to trick people into revealing information.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>02</span>
+                    <div>
+                        <h3>Malware</h3>
+                        <p>
+                            Malicious software that can harm devices
+                            or compromise information.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>03</span>
+                    <div>
+                        <h3>Ransomware</h3>
+                        <p>
+                            Malicious software that can prevent access
+                            to files or systems.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>04</span>
+                    <div>
+                        <h3>Password Attacks</h3>
+                        <p>
+                            Attempts to gain unauthorized access to
+                            accounts using stolen or guessed passwords.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="threats" class="section dark-section">
+
+            <p class="subtitle">COMMON THREATS</p>
+
+            <h2>Know the Risks</h2>
+
+            <div class="threats">
+
+                <div class="threat">
+                    <span>01</span>
+                    <div>
+                        <h3>Phishing</h3>
+                        <p>
+                            Fake emails, messages, or websites designed
+                            to trick people into revealing information.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>02</span>
+                    <div>
+                        <h3>Malware</h3>
+                        <p>
+                            Malicious software that can harm devices
+                            or compromise information.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>03</span>
+                    <div>
+                        <h3>Ransomware</h3>
+                        <p>
+                            Malicious software that can prevent access
+                            to files or systems.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat">
+                    <span>04</span>
+                    <div>
+                        <h3>Password Attacks</h3>
+                        <p>
+                            Attempts to gain unauthorized access to
+                            accounts using stolen or guessed passwords.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SAFETY TIPS -->
+        <section id="tips" class="section">
+
+            <p class="subtitle">STAY PROTECTED</p>
+
+            <h2>Cybersecurity Safety Tips</h2>
+
+            <div class="tips">
+
+                <div class="tip">
+                    <strong>01</strong>
+                    <h3>Use Strong Passwords</h3>
+                    <p>
+                        Create long, unique passwords for your accounts.
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <strong>02</strong>
+                    <h3>Enable MFA</h3>
+                    <p>
+                        Use multi-factor authentication whenever available.
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <strong>03</strong>
+                    <h3>Update Software</h3>
+                    <p>
+                        Keep your operating system and applications updated.
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <strong>04</strong>
+                    <h3>Think Before Clicking</h3>
+                    <p>
+                        Be careful with unexpected links and attachments.
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <strong>05</strong>
+                    <h3>Back Up Your Data</h3>
+                    <p>
+                        Keep backups of important files in a safe location.
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <strong>06</strong>
+                    <h3>Protect Personal Information</h3>
+                    <p>
+                        Avoid sharing sensitive information with unknown
+                        people or websites.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <h2>CyberSafe</h2>
+        <p>Cybersecurity Awareness Website</p>
+        <small>© 2026 CyberSafe | School Project</small>
+    </footer>
+
+</body>
+</html>
